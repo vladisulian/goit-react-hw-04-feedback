@@ -50,33 +50,35 @@ import { useState } from 'react';
 // }
 
 export const App = () => {
-  const [state, setState] = useState({
-    good: 2,
-    neutral: 0,
-    bad: 0,
-  });
+  const [good, setGood] = useState(0);
+  const [neutral, setNeutral] = useState(0);
+  const [bad, setBad] = useState(0);
+  const [feedbacks, setfeedbacks] = useState({ good, neutral, bad });
 
   const handleFeedback = data => {
-    // console.log(data);
-    // console.log(state[data]);
-    // console.log(state[data] + 1);
-    setState(prevState => {
-      console.log(
-        'state[data] = prevState[data] + 1 =',
-        (state[data] = prevState[data] + 1)
-      );
-      return (state[data] = prevState[data] += 1);
-    });
+    switch (data) {
+      case 'good':
+        setGood(prevState => prevState + 1);
+        break;
+      case 'neutral':
+        setNeutral(prevState => prevState + 1);
+        break;
+      case 'bad':
+        setBad(prevState => prevState + 1);
+        break;
+      default:
+        return;
+    }
   };
 
   const countTotalFeedback = () => {
-    return Object.values(state).reduce((acc, state) => {
+    return Object.values(feedbacks).reduce((acc, state) => {
       return acc + state;
     }, 0);
   };
 
   const countPositiveFeedbackPercentage = () => {
-    return Math.round((state.good * 100) / total) + '%';
+    return Math.round((good * 100) / total) + '%';
   };
   const total = countTotalFeedback();
   const positiveFeedbacks = countPositiveFeedbackPercentage();
@@ -85,10 +87,10 @@ export const App = () => {
     <FeedbackSection title={`Please, give feedback!`}>
       <FeedbackOptions
         addFeedback={handleFeedback}
-        state={Object.keys(state)}
+        state={Object.keys(feedbacks)}
       />
       <Statistics
-        states={state}
+        states={feedbacks}
         total={total}
         positivePercents={positiveFeedbacks}
       />
