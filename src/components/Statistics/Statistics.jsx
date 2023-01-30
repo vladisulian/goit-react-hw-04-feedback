@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import './statistics.css';
 export const Statistics = ({ states, total, positivePercents }) => {
-  // const { good, neutral, bad } = states;
+  const { good, neutral, bad } = states;
   // console.log(states);
   // console.log(total);
   return (
@@ -13,15 +13,15 @@ export const Statistics = ({ states, total, positivePercents }) => {
         <ul className="statistics__data">
           {/* good, neutra, bad feedback's */}
           <li>
-            <p>Good:</p> <span>{states.good}</span>
+            <p>Good:</p> <span>{good}</span>
           </li>
           <li>
             <p>Neutral:</p>
-            <span>{states.neutral}</span>
+            <span>{neutral}</span>
           </li>
           <li>
             <p>Bad:</p>
-            <span>{states.bad}</span>
+            <span>{bad}</span>
           </li>
           {/* total, positive percents */}
           <li>
