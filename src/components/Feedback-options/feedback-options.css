@@ -1,0 +1,66 @@
+.buttons-container {
+  display: flex;
+  gap: 25px;
+}
+button {
+  cursor: pointer;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 0 8px rgb(207, 207, 207);
+}
+
+#foot {
+  position: relative;
+  top: 15px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  border: none;
+  padding: 15px;
+  border-radius: 15px;
+  box-shadow: 0 0 8px #d9d4e7;
+  width: 200px;
+  height: 65px;
+  background-color: #d9d4e7;
+  animation-duration: 5s;
+}
+
+.button-os {
+  position: absolute;
+  width: 200px;
+  height: 65px;
+  top: -20px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  background-color: #f9f8fc;
+  transition: background-color 2.2s;
+  transition-duration: 3s;
+  transition: 1.5s;
+
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-os:hover {
+  position: absolute;
+  top: 0px;
+  background-color: #fec7d7;
+}
+
+.button-os a {
+  text-transform: capitalize;
+  font-size: 20px;
+  display: block;
+  text-decoration: none;
+  color: #0e172c;
+  transition: 1.5s;
+}
+
+.button-os:hover a {
+  letter-spacing: 5px;
+}
