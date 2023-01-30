@@ -53,9 +53,10 @@ export const App = () => {
   const [good, setGood] = useState(0);
   const [neutral, setNeutral] = useState(0);
   const [bad, setBad] = useState(0);
-  const [feedbacks, setfeedbacks] = useState({ good, neutral, bad });
+  // const [feedbacks, setfeedbacks] = useState({ good, neutral, bad });
 
   const handleFeedback = data => {
+    console.log(data);
     switch (data) {
       case 'good':
         setGood(prevState => prevState + 1);
@@ -72,9 +73,7 @@ export const App = () => {
   };
 
   const countTotalFeedback = () => {
-    return Object.values(feedbacks).reduce((acc, state) => {
-      return acc + state;
-    }, 0);
+    return good + neutral + bad;
   };
 
   const countPositiveFeedbackPercentage = () => {
@@ -87,10 +86,10 @@ export const App = () => {
     <FeedbackSection title={`Please, give feedback!`}>
       <FeedbackOptions
         addFeedback={handleFeedback}
-        state={Object.keys(feedbacks)}
+        state={Object.keys({ good, neutral, bad })}
       />
       <Statistics
-        states={feedbacks}
+        states={{ good, neutral, bad }}
         total={total}
         positivePercents={positiveFeedbacks}
       />

@@ -3,24 +3,25 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import './statistics.css';
 export const Statistics = ({ states, total, positivePercents }) => {
-  const { good, neutral, bad } = states;
+  // const { good, neutral, bad } = states;
+  console.log(states);
+  // console.log(total);
   return (
     <div className="statistics">
       <h1 className="statistics__title">Statistics</h1>
-
       {total > 0 ? (
         <ul className="statistics__data">
           {/* good, neutra, bad feedback's */}
           <li>
-            <p>Good:</p> <span>{good}</span>
+            <p>Good:</p> <span>{states.good}</span>
           </li>
           <li>
             <p>Neutral:</p>
-            <span>{neutral}</span>
+            <span>{states.neutral}</span>
           </li>
           <li>
             <p>Bad:</p>
-            <span>{bad}</span>
+            <span>{states.bad}</span>
           </li>
           {/* total, positive percents */}
           <li>
