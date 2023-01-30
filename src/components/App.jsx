@@ -56,7 +56,7 @@ export const App = () => {
   // const [feedbacks, setfeedbacks] = useState({ good, neutral, bad });
 
   const handleFeedback = data => {
-    console.log(data);
+    // console.log(data);
     switch (data) {
       case 'good':
         setGood(prevState => prevState + 1);
