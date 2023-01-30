@@ -1,49 +1,97 @@
-import { Component } from 'react';
+// import { Component } from 'react';
 import '../components/styles.css';
 import { FeedbackOptions } from './Feedback-options/Feedback-options';
 import { Statistics } from './Statistics/Statistics';
 import { FeedbackSection } from './Feedback-section/FeedbackSection';
-export class App extends Component {
-  state = {
-    good: 0,
+import { useState } from 'react';
+// export class App extends Component {
+//   state = {
+//     good: 0,
+//     neutral: 0,
+//     bad: 0,
+//   };
+
+//   addFeedback = data => {
+//     this.setState(prevState => ({
+//       [data]: prevState[data] + 1,
+//     }));
+//   };
+
+//   countTotalFeedback = () => {
+//     return Object.values(this.state).reduce((acc, state) => {
+//       return acc + state;
+//     }, 0);
+//   };
+
+//   countPositiveFeedbackPercentage = () => {
+//     const total = this.countTotalFeedback();
+//     return Math.round((this.state.good * 100) / total) + '%';
+//   };
+
+//   render() {
+//     const state = this.state;
+//     const totalFeedback = this.countTotalFeedback();
+//     const positiveFeedbacks = this.countPositiveFeedbackPercentage();
+
+//     return (
+//       <FeedbackSection title={`Please, give feedback!`}>
+//         <FeedbackOptions
+//           addFeedback={this.addFeedback}
+//           state={Object.keys(this.state)}
+//         />
+//         <Statistics
+//           states={state}
+//           total={totalFeedback}
+//           positivePercents={positiveFeedbacks}
+//         />
+//       </FeedbackSection>
+//     );
+//   }
+// }
+
+export const App = () => {
+  const [state, setState] = useState({
+    good: 2,
     neutral: 0,
     bad: 0,
+  });
+
+  const handleFeedback = data => {
+    // console.log(data);
+    // console.log(state[data]);
+    // console.log(state[data] + 1);
+    setState(prevState => {
+      console.log(
+        'state[data] = prevState[data] + 1 =',
+        (state[data] = prevState[data] + 1)
+      );
+      return (state[data] = prevState[data] += 1);
+    });
   };
 
-  addFeedback = data => {
-    this.setState(prevState => ({
-      [data]: prevState[data] + 1,
-    }));
-  };
-
-  countTotalFeedback = () => {
-    return Object.values(this.state).reduce((acc, state) => {
+  const countTotalFeedback = () => {
+    return Object.values(state).reduce((acc, state) => {
       return acc + state;
     }, 0);
   };
 
-  countPositiveFeedbackPercentage = () => {
-    const total = this.countTotalFeedback();
-    return Math.round((this.state.good * 100) / total) + '%';
+  const countPositiveFeedbackPercentage = () => {
+    return Math.round((state.good * 100) / total) + '%';
   };
+  const total = countTotalFeedback();
+  const positiveFeedbacks = countPositiveFeedbackPercentage();
 
-  render() {
-    const state = this.state;
-    const totalFeedback = this.countTotalFeedback();
-    const positiveFeedbacks = this.countPositiveFeedbackPercentage();
-
-    return (
-      <FeedbackSection title={`Please, give feedback!`}>
-        <FeedbackOptions
-          addFeedback={this.addFeedback}
-          state={Object.keys(this.state)}
-        />
-        <Statistics
-          states={state}
-          total={totalFeedback}
-          positivePercents={positiveFeedbacks}
-        />
-      </FeedbackSection>
-    );
-  }
-}
+  return (
+    <FeedbackSection title={`Please, give feedback!`}>
+      <FeedbackOptions
+        addFeedback={handleFeedback}
+        state={Object.keys(state)}
+      />
+      <Statistics
+        states={state}
+        total={total}
+        positivePercents={positiveFeedbacks}
+      />
+    </FeedbackSection>
+  );
+};
